@@ -53,6 +53,7 @@ class ProductProduct(models.Model):
     @api.multi
     def price_compute(self, price_type, uom=False, currency=False,
                       company=False):
+        self = self.sudo()
         packs, no_packs = self.split_pack_products()
         prices = super(ProductProduct, no_packs).price_compute(
             price_type, uom, currency, company)
